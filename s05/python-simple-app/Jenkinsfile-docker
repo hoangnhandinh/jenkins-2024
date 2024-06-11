@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker {image 'python:3.9.18-alpine'}
+        dockerContainer {image 'python:3.9.18-alpine'}
     }
     stages {
         stage('build') {
