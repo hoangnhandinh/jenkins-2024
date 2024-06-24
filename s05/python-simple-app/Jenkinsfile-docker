@@ -1,23 +1,10 @@
 pipeline {
-        agent {
-        kubernetes {
-            yaml """
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: python
-    image: python:3.9.18-alpine
-    command:
-    - cat
-    tty: true
-"""
-        }
+    agent { any
     }
     stages {
         stage('build') {
             steps {
-                sh 'pip3 install -r s05/python-simple-app/requirements.txt --ignore-installed'
+                sh 'pip3 install -r s05/python-simple-app/requirements.txt'
             }
         }
 
