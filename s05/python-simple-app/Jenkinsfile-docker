@@ -1,18 +1,26 @@
 pipeline {
     agent {
-        docker { 
-            image 'python:3-alpine' 
-            args '-u root'
-            }
+        label 'node1'
     }
     stages {
-        stage('build') {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'python:3-alpine'
+                    args '-u root'
+                }
+            }
             steps {
                 sh 'pip3 install -r s05/python-simple-app/requirements.txt'
             }
         }
-
-        stage('run') {
+        stage('Run') {
+            agent {
+                docker {
+                    image 'python:3-alpine'
+                    args '-u root'
+                }
+            }
             steps {
                 sh 'python3 s05/python-simple-app/app.py &'
             }
